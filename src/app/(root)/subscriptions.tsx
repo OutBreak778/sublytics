@@ -12,7 +12,7 @@ const Subscriptions = () => {
 
       {/* Main content area - starts below the inset */}
       <View style={[styles.content, { paddingTop: insets.top }]}>
-        <Text style={styles.text}>Subscriptions Page</Text>
+        <Text style={styles.text}>Subscription Page</Text>
       </View>
     </View>
   );
