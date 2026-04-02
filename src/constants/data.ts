@@ -89,6 +89,7 @@ export const HOME_SUBSCRIPTIONS: Subscription[] = [
     billing: "Monthly",
     renewalDate: "2026-03-20T10:00:00.000Z",
     color: "#f5c542",
+    bgColor: "#44444410",
   },
   {
     id: "github-pro",
@@ -104,6 +105,7 @@ export const HOME_SUBSCRIPTIONS: Subscription[] = [
     billing: "Monthly",
     renewalDate: "2026-03-24T10:00:00.000Z",
     color: "#e8def8",
+    bgColor: "#44444410",
   },
   {
     id: "claude-pro",
@@ -119,6 +121,7 @@ export const HOME_SUBSCRIPTIONS: Subscription[] = [
     billing: "Monthly",
     renewalDate: "2026-03-27T10:00:00.000Z",
     color: "#b8d4e3",
+    bgColor: "#44444410",
   },
   {
     id: "canva-pro",
@@ -134,5 +137,6 @@ export const HOME_SUBSCRIPTIONS: Subscription[] = [
     billing: "Yearly",
     renewalDate: "2026-04-02T10:00:00.000Z",
     color: "#b8e8d0",
+    bgColor: "#44444410",
   },
 ];

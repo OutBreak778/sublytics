@@ -1,22 +1,66 @@
+import { AnalyticsEvents, useAnalytics } from "@/utils/analytics";
+import { useAuth } from "@clerk/expo";
 import { router } from "expo-router";
-import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect } from "react";
+import {
+  Image,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Onboarding = () => {
   const insets = useSafeAreaInsets();
+  const { isSignedIn } = useAuth();
+  const { track, trackScreen, identifyUser } = useAnalytics();
+
+  // Screen View Tracking + Redirect if already signed in
+  useEffect(() => {
+    // Track screen view when onboarding loads
+    trackScreen("Onboarding");
+
+    const init = () => {
+      if (isSignedIn) {
+        track(AnalyticsEvents.ONBOARDING_SKIPPED, {
+          reason: "already_signed_in",
+          auto_redirect: true,
+        });
+
+        router.replace("/(root)");
+      }
+    };
+
+    init();
+  }, [isSignedIn, router, track, trackScreen]);
 
   const handleGetStarted = async () => {
     try {
-      router.replace("/");
+      track(AnalyticsEvents.ONBOARDING_STARTED, {
+        source: "onboarding_screen",
+        button: "get_started",
+      });
+
+      router.navigate("/(auth)/sign-in");
     } catch (error) {
-      console.error("Failed to save onboarding status", error);
-      router.replace("/"); // still navigate even if storage fails
+      console.error("Failed to navigate from onboarding:", error);
+
+      track(AnalyticsEvents.ONBOARDING_STARTED, {
+        source: "onboarding_screen",
+        button: "get_started",
+        success: false,
+        error: "navigation_failed",
+      });
+
+      router.navigate("/");
     }
   };
-
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
       <View style={{ height: insets.top }} />
 
       <View style={styles.content}>
@@ -57,7 +101,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: "space-around", // This spreads image, text, and button
+    justifyContent: "space-around",
     paddingHorizontal: 12,
     paddingBottom: 35,
   },
@@ -67,16 +111,14 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
 
-  // Image Section
   imageContainer: {
     alignItems: "center",
   },
   pattern: {
     width: "100%",
-    height: 600, // Better controlled height
+    height: 600,
   },
 
-  // Text Section
   textContainer: {
     alignItems: "center",
   },
@@ -95,7 +137,6 @@ const styles = StyleSheet.create({
     opacity: 0.95,
   },
 
-  // Button Section
   buttonContainer: {
     marginTop: 12,
     paddingHorizontal: 2,
@@ -103,11 +144,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#FFFFFF",
     paddingVertical: 16,
-    borderRadius: 30, // Nice border radius
+    borderRadius: 30,
     alignItems: "center",
   },
   buttonText: {
-    color: "#000000", // Black text
+    color: "#000000",
     fontSize: 18,
     fontWeight: "600",
   },
