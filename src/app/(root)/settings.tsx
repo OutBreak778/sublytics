@@ -24,8 +24,9 @@ import {
   Lock,
   LogOut,
   Mail,
+  Moon,
   Receipt,
-  User
+  User,
 } from "lucide-react-native";
 
 const Settings = () => {
@@ -147,12 +148,12 @@ const Settings = () => {
             onPress={() => Alert.alert("Coming Soon")}
           />
 
-          {/* <SettingsItem
+          <SettingsItem
             icon={Moon}
             title="Appearance"
             subtitle="Light Theme"
             onPress={() => Alert.alert("Coming Soon")}
-          /> */}
+          />
         </View>
 
         {/* Subscription Section */}
