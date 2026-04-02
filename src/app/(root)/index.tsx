@@ -99,7 +99,6 @@ const Index = () => {
               />
             </View>
 
-            {/* All Subscriptions Header */}
             <View style={styles.subscriptionTop}>
               <Text style={styles.subscriptionTopText}>All Subscriptions</Text>
               <TouchableOpacity
@@ -149,9 +148,7 @@ const Index = () => {
           </View>
         )}
         keyExtractor={(item) => item.id}
-        ListFooterComponent={
-          <View style={{ height: insets.bottom + 10 }} /> // Add spacer at bottom
-        }
+        ListFooterComponent={<View style={{ height: insets.bottom + 10 }} />}
         contentContainerStyle={[
           styles.content,
           { paddingTop: insets.top, paddingBottom: insets.bottom + 40 },
