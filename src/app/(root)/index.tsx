@@ -18,6 +18,7 @@ import { colors } from "@/constants/theme";
 import { AnalyticsEvents, useAnalytics } from "@/utils/analytics";
 import { useUser } from "@clerk/expo";
 import { FlashList } from "@shopify/flash-list";
+import { router } from "expo-router";
 
 const Index = () => {
   const insets = useSafeAreaInsets();
@@ -50,13 +51,13 @@ const Index = () => {
 
   // Handle "Add" button press
   const handleAddSubscription = () => {
-    track(AnalyticsEvents.BUTTON_CLICKED, {
-      button: "add_subscription",
-      screen: "Home",
-      location: "header",
-    });
+    // track(AnalyticsEvents.BUTTON_CLICKED, {
+    //   button: "add_subscription",
+    //   screen: "Home",
+    //   location: "header",
+    // });
 
-    // Future navigation: router.push('/add-subscription')
+    router.navigate("/(modal)/create-subscription");
     // For now, just tracking
     console.log("Add subscription clicked");
   };
@@ -71,10 +72,10 @@ const Index = () => {
 
   // Handle "View All" in All Subscriptions
   const handleViewAllSubscriptions = () => {
-    track(AnalyticsEvents.BUTTON_CLICKED, {
-      button: "view_all_subscriptions",
-      screen: "Home",
-    });
+    // track(AnalyticsEvents.BUTTON_CLICKED, {
+    //   button: "view_all_subscriptions",
+    //   screen: "Home",
+    // });
   };
   return (
     <View style={styles.container}>

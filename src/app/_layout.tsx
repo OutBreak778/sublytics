@@ -21,8 +21,14 @@ export default function RootLayout() {
           <Stack.Screen name="splash-screen" options={{ headerShown: false }} />
           <Stack.Screen name="onboarding" options={{ headerShown: false }} />
 
-          <Stack.Screen name="/(auth)/sign-in" options={{ headerShown: false }} />
-          <Stack.Screen name="/(auth)/sign-up" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="/(auth)/sign-in"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="/(auth)/sign-up"
+            options={{ headerShown: false }}
+          />
         </Stack>
       </ClerkProvider>
     </PostHogProvider>
