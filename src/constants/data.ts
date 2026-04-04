@@ -24,6 +24,8 @@ export const UPCOMING_SUBSCRIPTIONS: UpcomingSubscription[] = [
     price: 5.99,
     currency: "USD",
     daysLeft: 2,
+    color: "#f5c542",
+    bgColor: "#44444410",
   },
   {
     id: "notion",

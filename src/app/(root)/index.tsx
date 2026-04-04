@@ -145,7 +145,10 @@ const Index = () => {
                       <View style={styles.upcomingBottomCardTopLeft}>
                         <Image
                           source={item.icon}
-                          style={styles.upcomingBottomCardTopLeftImage}
+                          style={[
+                            styles.upcomingBottomCardTopLeftImage,
+                            { tintColor: colors.primary },
+                          ]}
                         />
                       </View>
                       <View style={styles.upcomingBottomCardTopRight}>
@@ -412,7 +415,7 @@ const styles = StyleSheet.create({
   upcomingBottomCardTopLeftImage: {
     width: 40,
     height: 40,
-    tintColor: colors.accent, // Changed from "#ea7a53"
+    // tintColor: colors.accent, // Changed from "#ea7a53"
   },
   upcomingBottomCardTopLeft: {
     alignItems: "center",
